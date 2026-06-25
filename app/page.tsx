@@ -16,29 +16,48 @@ type Deal = {
   state: string | null;
 };
 
-const favoriteStores = [
-  { id: "all", label: "All Stores" },
-  { id: "walmart", label: "Walmart" },
-  { id: "total wine", label: "Total Wine" },
-  { id: "abc", label: "ABC" },
-];
+type FavoriteStore = {
+  id: string;
+  store_id: string;
+  label: string;
+  sort_order: number | null;
+};
 
 export default function Home() {
   const [deals, setDeals] = useState<Deal[]>([]);
+  const [favoriteStores, setFavoriteStores] = useState<FavoriteStore[]>([]);
   const [search, setSearch] = useState("");
-  const [selectedStore, setSelectedStore] = useState("all");
+  const [selectedStoreId, setSelectedStoreId] = useState("all");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedStore = localStorage.getItem("selectedStore");
+    const savedStore = localStorage.getItem("selectedStoreId");
     if (savedStore) {
-      setSelectedStore(savedStore);
+      setSelectedStoreId(savedStore);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("selectedStore", selectedStore);
-  }, [selectedStore]);
+    localStorage.setItem("selectedStoreId", selectedStoreId);
+  }, [selectedStoreId]);
+
+  useEffect(() => {
+    async function loadFavoriteStores() {
+      const { data, error } = await supabase
+        .from("favorite_stores")
+        .select("*")
+        .order("sort_order", { ascending: true });
+
+      if (error) {
+        console.error("Error loading favorite stores:", error);
+        setFavoriteStores([]);
+      } else {
+        setFavoriteStores((data as FavoriteStore[]) || []);
+      }
+    }
+
+    loadFavoriteStores();
+  }, []);
 
   useEffect(() => {
     async function loadDeals() {
@@ -53,14 +72,14 @@ export default function Home() {
         query = query.ilike("product_name", `%${search.trim()}%`);
       }
 
-      if (selectedStore !== "all") {
-        query = query.ilike("store_name", `%${selectedStore}%`);
+      if (selectedStoreId !== "all") {
+        query = query.eq("store_id", selectedStoreId);
       }
 
       const { data, error } = await query;
 
       if (error) {
-        console.error("Error loading deals:", JSON.stringify(error, null, 2));
+        console.error("Error loading deals:", error);
         setDeals([]);
       } else {
         setDeals((data as Deal[]) || []);
@@ -70,7 +89,7 @@ export default function Home() {
     }
 
     loadDeals();
-  }, [search, selectedStore]);
+  }, [search, selectedStoreId]);
 
   return (
     <main style={{ padding: "24px", maxWidth: "720px", margin: "0 auto" }}>
@@ -81,18 +100,40 @@ export default function Home() {
         <h2>Where are you shopping?</h2>
 
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {favoriteStores.map((store) => (
+          <button
+            onClick={() => setSelectedStoreId("all")}
+            style={{
+              padding: "10px 14px",
+              borderRadius: "999px",
+              border:
+                selectedStoreId === "all" ? "2px solid black" : "1px solid #ccc",
+              background: selectedStoreId === "all" ? "#eee" : "white",
+              cursor: "pointer",
+            }}
+          >
+            All Stores
+          </button>
+
+{(favoriteStores.length > 0
+  ? favoriteStores
+  : [
+      { id: "walmart", store_id: "walmart", label: "Walmart", sort_order: 1 },
+      { id: "total-wine", store_id: "total wine", label: "Total Wine", sort_order: 2 },
+      { id: "abc", store_id: "abc", label: "ABC", sort_order: 3 },
+    ]
+).map((store) => (
             <button
               key={store.id}
-              onClick={() => setSelectedStore(store.id)}
+              onClick={() => setSelectedStoreId(store.store_id)}
               style={{
                 padding: "10px 14px",
                 borderRadius: "999px",
                 border:
-                  selectedStore === store.id
+                  selectedStoreId === store.store_id
                     ? "2px solid black"
                     : "1px solid #ccc",
-                background: selectedStore === store.id ? "#eee" : "white",
+                background:
+                  selectedStoreId === store.store_id ? "#eee" : "white",
                 cursor: "pointer",
               }}
             >

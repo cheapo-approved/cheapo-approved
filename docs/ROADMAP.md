@@ -1,164 +1,271 @@
-Cheapo Approved Roadmap (v0.2)
+Cheapo Approved Roadmap (v1.0)
 ==============================
 
 Vision
 ------
 
-Become the easiest way for shoppers to discover the cheapest alcohol prices nearby while building a community-driven database of verified deals.
+Become the easiest way for shoppers to discover the best deals on any UPC product.
 
-**Mission:**  
-Save people money one bottle at a time.
+Start with alcohol.
+
+Expand to groceries, household goods, health products, pet supplies, and beyond.
+Mission
+-------
+
+**Save Mike $4 today.**
+
+Every feature should help answer one question:
+
+> **"What's the smartest thing to buy right now?"**
+
+Cheapo Approved is **not** a product database.
+
+It is a **decision engine**.
 
 * * *
 
-Sprint 1 — Foundation ✅
-=======================
+Sprint 1 — Foundation ✅ COMPLETE
+================================
+
+Goals
+-----
 
 * GitHub Repository
 
-* Next.js project
+* Next.js
 
-* Supabase project
+* React
 
-* Local development environment
+* TypeScript
 
-* Environment variables
+* Supabase
 
-* Initial deployment
+* Vercel
 
-Status: COMPLETE
+* VS Code
+
+* Local Development
+
+* Production Deployment
+
+Completed
+---------
+
+* GitHub workflow established
+
+* Auto deployment to Vercel
+
+* Localhost working
+
+* Production site live
+
+* Environment variables configured
+
+* TypeScript configured
+
+* Package dependencies stabilized
 
 * * *
 
-Sprint 2 — Database ✅
-=====================
+Sprint 2 — Database ✅ COMPLETE
+==============================
 
-* Product tables
+Goals
+-----
 
-* Store tables
+* Products
 
-* Deals table
+* Stores
+
+* Prices
+
+* Favorite Stores
 
 * deal_view
 
-* Initial sample data
+Completed
+---------
 
-Status: COMPLETE
+* Normalized database
 
-* * *
-
-Sprint 3 — Search Engine ✅
-==========================
+* deal_view created
 
 * Product search
 
-* Live filtering
+* UPC search
 
-* Case-insensitive search
+* Price observations
+
+* Store relationships
+
+* * *
+
+Sprint 3 — Core Experience ✅ COMPLETE
+=====================================
+
+Goals
+-----
+
+Users should immediately answer:
+
+> "How can I save money?"
+
+Completed
+---------
+
+* Product search
 
 * Price sorting
 
-Status: COMPLETE
-
-* * *
-
-Sprint 4 — Store Experience ✅
-=============================
-
-* Favorite store buttons
+* Store selector
 
 * Remember selected store
 
-* Store filtering
-
-* "All Stores"
-
-Status: COMPLETE
-
-* * *
-
-Sprint 5 — MVP Interface ✅
-==========================
-
-* Deal cards
+* Favorite Stores
 
 * Loading state
 
 * Empty state
 
-* Mobile-friendly layout
-
-* Clean typography
-
-Status: COMPLETE
+* Live Supabase data
 
 * * *
 
-Sprint 6 — Stability
-====================
+Sprint 4 — Dynamic Deal Engine (CURRENT)
+========================================
 
-Goal:  
-Turn the MVP into a reliable production application.
+Goal
+----
 
-Tasks:
+Remove every remaining piece of hardcoded data.
 
-* Fix Vercel deployment
+The database should drive the application.
+Tasks
+-----
 
-* Production environment variables
+* Improve search performance
 
-* Verify production database
+* Dynamic favorite stores
 
-* Database cleanup
+* Improve store filtering
 
-* Consistent naming
+* Better error handling
 
-* Error handling
+* Better loading states
 
-* Loading improvements
+* Verify localhost and production stay synchronized
 
-* Better empty states
+* Clean up database naming
 
-Status: IN PROGRESS
+* Prepare for barcode scanning
+
+**Status:** IN PROGRESS
 
 * * *
 
-Sprint 7 — UI Polish
-====================
+Sprint 5 — Mobile Experience
+============================
 
-Goal:  
-Make the app feel like something users would actually keep on their phone.
+Goal
+----
 
-Tasks:
+Make the app feel native on a phone.
+Tasks
+-----
+
+* Better deal cards
+
+* Better spacing
+
+* Product images
 
 * Store logos
 
 * Savings badges
 
-* Better spacing
-
-* Better cards
-
-* Better typography
-
-* Product images (optional)
+* Responsive layout
 
 * Dark mode (optional)
 
-Status: Planned
+* * *
+
+Sprint 6 — Barcode First
+========================
+
+Goal
+----
+
+Typing should become optional.
+Tasks
+-----
+
+* Barcode scanner
+
+* UPC lookup
+
+* Product page
+
+* Recent scans
+
+* Camera permissions
 
 * * *
 
-Sprint 8 — Accounts
-===================
+Sprint 7 — Store Intelligence
+=============================
 
-Goal:  
-Personalize the experience.
+Goal
+----
 
-Tasks:
+Know where the shopper is.
+Tasks
+-----
 
-* Authentication
+* GPS store detection
 
-* User profiles
+* Nearby stores
+
+* Distance calculation
+
+* Worth the Drive
+
+* Better store pages
+
+* * *
+
+Sprint 8 — Community Pricing
+============================
+
+Goal
+----
+
+Grow the database automatically.
+Tasks
+-----
+
+* Submit price
+
+* OCR shelf tags
+
+* Receipt uploads
+
+* Moderation
+
+* Confidence scoring
+
+* * *
+
+Sprint 9 — Personalization
+==========================
+
+Goal
+----
+
+Make Cheapo Approved unique for every user.
+Tasks
+-----
+
+* Accounts
 
 * Favorite products
 
@@ -166,147 +273,202 @@ Tasks:
 
 * Saved searches
 
-* User settings
-
-Status: Planned
-
-* * *
-
-Sprint 9 — Notifications
-========================
-
-Goal:  
-Bring users back automatically.
-
-Tasks:
-
 * Price alerts
 
-* Favorite product alerts
-
-* New deal notifications
-
-* Weekly digest
-
-* Email notifications
-
-* Push notifications
-
-Status: Planned
+* Shopping lists
 
 * * *
 
-Sprint 10 — Data Growth
-=======================
+Sprint 10 — Decision Engine
+===========================
 
-Goal:  
-Scale the database.
+Goal
+----
 
-Tasks:
+Help shoppers make better buying decisions.
+Tasks
+-----
 
-* CSV imports
+* Cost per serving
 
-* Admin dashboard
+* Cost per ounce
 
-* Community submissions
+* Cost per standard drink
 
-* Moderation queue
-
-* Duplicate detection
-
-* Data validation
-
-Status: Planned
-
-* * *
-
-Sprint 11 — Intelligence
-========================
-
-Goal:  
-Help users buy smarter.
-
-Tasks:
-
-* Price history
-
-* Historical charts
-
-* Best price ever
-
-* Price trends
+* Unit pricing
 
 * AI recommendations
 
-* Similar products
+* Price history
 
-Status: Planned
+* Buy now / wait suggestions
 
 * * *
 
-Sprint 12 — Launch
-==================
+Sprint 11 — Expand Beyond Alcohol
+=================================
 
-Goal:  
-Public beta.
+Goal
+----
 
-Tasks:
+Support any product with a UPC.
+Examples
+--------
 
-* Production deployment
+* Soda
 
-* Domain
+* Water
+
+* Snacks
+
+* Paper towels
+
+* Laundry detergent
+
+* Dog food
+
+* Medicine
+
+* Batteries
+
+* * *
+
+Sprint 12 — Public Launch
+=========================
+
+Goal
+----
+
+Open Cheapo Approved to everyone.
+Tasks
+-----
+
+* Custom domain
 
 * Analytics
 
-* SEO
-
 * Performance optimization
+
+* SEO
 
 * User feedback
 
-* Bug fixes
+* Marketing
 
-Status: Planned
+* Public beta
 
 * * *
 
 Guiding Principles
 ==================
 
-1. Working software beats perfect software.
+1. Save Mike $4 today.
 
-2. Every sprint ends with a GitHub commit.
+2. The phone should do the work.
 
-3. Every sprint ends with a working Vercel deployment.
+3. GPS before typing.
 
-4. Never break production.
+4. Barcode before searching.
 
-5. Mobile-first.
+5. OCR before manual entry.
 
-6. Keep the UI simple.
+6. Database over hardcoded data.
 
-7. Data quality is more important than feature count.
+7. Mobile first.
+
+8. Every sprint ends with:
+   
+   * A GitHub commit
+   
+   * A successful Vercel deployment
+   
+   * An updated roadmap
 
 * * *
 
-Current Status (June 2026)
-==========================
+Current Status (June 25, 2026)
+==============================
 
-✅ GitHub workflow established
+Infrastructure
+--------------
 
-✅ Local development working
+✅ GitHub
 
-✅ Supabase connected
+✅ Vercel
 
-✅ Search working
+✅ Supabase
 
-✅ Store filtering working
+✅ Production deployment
 
-✅ Price sorting working
+✅ Local development
+Database
+--------
 
-✅ Favorite stores remembered
+✅ Products
 
-✅ Live data displayed
+✅ Stores
 
-Current focus:  
-**Sprint 6 — Stability & Production Deployment**
+✅ Prices
+
+✅ deal_view
+
+✅ Favorite Stores
+Features
+--------
+
+✅ Product search
+
+✅ Price sorting
+
+✅ Store filtering
+
+✅ Remember selected store
+
+✅ Live production website
+
+* * *
+
+Current Focus
+=============
+
+Sprint 4 — Dynamic Deal Engine
+------------------------------
+
+The application should become completely data-driven.
+
+After that...
+
+📱 Mobile experience
+
+📷 Barcode scanning
+
+📍 GPS
+
+📸 OCR
+
+🤖 Decision Engine
+
+* * *
+
+Long-Term Vision
+----------------
+
+One day someone walks into Walmart.
+
+They open Cheapo Approved.
+
+The phone automatically knows:
+
+* where they are
+
+* what they're looking at
+
+* what it costs
+
+* whether it's a good deal
+
+* whether another store nearby is worth the drive
+
+The user simply decides whether to buy.
+
+Everything else is automatic.

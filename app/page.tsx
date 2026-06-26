@@ -22,7 +22,40 @@ type FavoriteStore = {
   label: string;
   sort_order: number | null;
 };
+function getCheapoStatus(price: number | null) {
+  if (price === null) {
+    return {
+      label: "⚪ No Price",
+      color: "#888",
+    };
+  }
 
+  if (price <= 10) {
+    return {
+      label: "✅ Cheapo Approved",
+      color: "#16a34a",
+    };
+  }
+
+  if (price <= 20) {
+    return {
+      label: "👍 Good Value",
+      color: "#2563eb",
+    };
+  }
+
+  if (price <= 30) {
+    return {
+      label: "👌 Fair Price",
+      color: "#ca8a04",
+    };
+  }
+
+  return {
+    label: "💡 Better Option",
+    color: "#dc2626",
+  };
+}
 export default function Home() {
   const [deals, setDeals] = useState<Deal[]>([]);
   const [favoriteStores, setFavoriteStores] = useState<FavoriteStore[]>([]);
@@ -64,7 +97,7 @@ export default function Home() {
       setLoading(true);
 
       let query = supabase
-        .from("deal_view")
+        .from("deal_score_view")
         .select("*")
         .order("price_usd", { ascending: true });
 
@@ -182,8 +215,28 @@ export default function Home() {
               padding: "16px",
             }}
           >
-            <h3 style={{ margin: "0 0 4px" }}>{deal.product_name}</h3>
+{(() => {
+  const status = getCheapoStatus(deal.price_usd);
 
+  return (
+    <>
+      <div
+        style={{
+          color: status.color,
+          fontWeight: "bold",
+          marginBottom: "8px",
+          fontSize: "14px",
+        }}
+      >
+        {status.label}
+      </div>
+
+      <h3 style={{ margin: "0 0 4px" }}>
+        {deal.product_name}
+      </h3>
+    </>
+  );
+})()}
             <p style={{ margin: "0 0 8px" }}>
               {deal.brand} {deal.package ? `• ${deal.package}` : ""}
             </p>
